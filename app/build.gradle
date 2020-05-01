@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+	// 指定编译用的 SDK 版本号，如 28 表示使用 Android9.0 编译
+    compileSdkVersion 23
+	// 指定编译工具的版本号，这里的头两位数字必须与 compileSdkVersion 保持一致，具体的版本号可在 sdk 安装目录的 "sdk/build-tiols" 下找到
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+		// 指定该模块的应用编号，即 App 的包名。该参数为自动生成，无需修改
+        applicationId "bili.lhua.io"
+		// 指定 App 适合运行的最小 SDK 版本号。如 16 表示至少要在 Android4.1 上运行
+        minSdkVersion 14
+		// 指定目标设备的 SDK 版本号。即该 App 最希望在哪个版本的 Android 上运行
+        targetSdkVersion 22
+		// 指定 App 的应用版本号
+        versionCode 1
+		// 指定 App 的应用版本名称
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+			// 指定是否开启代码混淆功能。true 表示开启混淆，false 表示无需混淆
+            minifyEnabled false
+			// 指定代码混淆规则文件的文件名
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// 指定 App 编译的依赖信息
+dependencies {
+	// 指定引用 jar 包的路径
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+	// 指定单元测试编译用的 junit 版本号
+	testImplementation 'junit:junit:4.12'
+	// 指定编译 Android 的高版本支持库。如 AppCompatActivity 必须指定编译 appcimpat-v7 库
+	implementation "com.android.support:appcompat-v7:28.0.0"
+}
